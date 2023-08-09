@@ -1,7 +1,12 @@
+import { useState } from "react";
+import { shortList } from "./data";
+import { Carousel } from "./assets/Carousel/Carousel";
+
 const App = () => {
+  const [people, setPeople] = useState(shortList);
   return (
     <main>
-      <h2>Slider Starter</h2>
+      <Carousel list={people} setList={setPeople} />
     </main>
   );
 };
