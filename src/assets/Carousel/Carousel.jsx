@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import { FaQuoteRight } from "react-icons/fa";
 
@@ -19,6 +19,15 @@ export const Carousel = ({ list, setList }) => {
     });
   };
 
+  useEffect(() => {
+    let sliderId = setInterval(() => {
+      nextSlide();
+    }, 5000);
+    return () => {
+      clearInterval(sliderId);
+    };
+  }, [current]);
+
   return (
     <section className="slider-container">
       {list.map((item, key) => {
@@ -30,7 +39,7 @@ export const Carousel = ({ list, setList }) => {
             style={{
               transform: `translate(${100 * (key - current)}%)`,
               opacity: key === current ? 1 : 0,
-              visibility: key === current ? "visible" : "hidden"
+              visibility: key === current ? "visible" : "hidden",
             }}
           >
             <img src={image} alt="" className="person-img" />
@@ -54,6 +63,7 @@ export const Carousel = ({ list, setList }) => {
         }}
         className="next"
       />
+
     </section>
   );
 };
