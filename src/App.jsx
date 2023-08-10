@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { shortList } from "./data";
+import { list } from "./data";
 import { Carousel } from "./assets/Carousel/Carousel";
 
 const App = () => {
-  const [people, setPeople] = useState(shortList);
+  const [people, setPeople] = useState(list);
   return (
     <main>
       <Carousel list={people} setList={setPeople} />

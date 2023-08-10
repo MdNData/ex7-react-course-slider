@@ -3,16 +3,36 @@ import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import { FaQuoteRight } from "react-icons/fa";
 
 export const Carousel = ({ list, setList }) => {
-  const nextSlide = (item, setItem) => {};
+  const [current, setCurrent] = useState(0);
 
-  const prevSlide = (item, setItem) => {};
+  const nextSlide = () => {
+    setCurrent((oldCurrent) => {
+      const result = (oldCurrent + 1) % list.length;
+      return result;
+    });
+  };
+
+  const prevSlide = () => {
+    setCurrent((oldCurrent) => {
+      const result = (oldCurrent - 1 + list.length) % list.length;
+      return result;
+    });
+  };
 
   return (
     <section className="slider-container">
       {list.map((item, key) => {
         const { image, name, title, quote } = item;
         return (
-          <article className="slide curr-slide" key={key}>
+          <article
+            className="slide"
+            key={key}
+            style={{
+              transform: `translate(${100 * (key - current)}%)`,
+              opacity: key === current ? 1 : 0,
+              visibility: key === current ? "visible" : "hidden"
+            }}
+          >
             <img src={image} alt="" className="person-img" />
             <h4 className="name">{name}</h4>
             <p className="title">{title}</p>

@@ -258,11 +258,16 @@ ul {
   text-align: center;
   position: relative;
   margin: auto;
-  width: 70vw;
   margin-top: 200px;
+  width: 70vw;
+  height: 480px;
+  max-width: 580px;
+  overflow: hidden;
 }
 
 .slide {
+  position: absolute;
+  transition: 200ms all linear;
 }
 
 .slide img {
@@ -304,16 +309,18 @@ ul {
 .prev,
 .next {
   position: absolute;
-  bottom: 49%;
+  top: 200px;
   background-color: #475569d3;
   color: white;
   padding: 3px;
   font-size: 22px;
   cursor: pointer;
   border-radius: 3px;
+  transition: 100ms all linear;
 }
 
-.prev:hover, .next:hover {
+.prev:hover,
+.next:hover {
   background-color: #7c3aedb3;
 }
 
@@ -323,4 +330,8 @@ ul {
 
 .next {
   right: 0;
+}
+
+.next-slide {
+  transform: translateX(100%);
 }
